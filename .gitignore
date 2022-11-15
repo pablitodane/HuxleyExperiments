@@ -1,0 +1,7 @@
+plots/
+mat/
+*.fig
+*.png
+*.mat
+*.pdf
+
