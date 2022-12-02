@@ -26,14 +26,25 @@ legend('attachment - model','detachment - model','attachment - figure', 'detachm
 
 %% Fig04
 %%%% Fig04_A
+fig4aDir = [matDir, 'GraphComparison/fig4/fig4a/'];
+load([fig4aDir, 'fce.mat']);
+load([fig4aDir, 't.mat']);
+load([fig4aDir, 'fig4A.mat']);
+
+
+figure;plot(t,[fce],fig4A(:,1),fig4A(:,2))
+title('forces')
+legend('ce - model','ce - graph')
+xlabel('Time [s]')
+ylabel('Force [N]')
 
 %%%% Fig04_B
 
 %%%% Fig04_C
-fig4Dir = [matDir, 'GraphComparison/fig4/'];
-load([fig4Dir, 'fce.mat']);
-load([fig4Dir, 't.mat']);
-load([fig4Dir, 'fig4C.mat']);
+fig4cDir = [matDir, 'GraphComparison/fig4/fig4c/'];
+load([fig4cDir, 'fce.mat']);
+load([fig4cDir, 't.mat']);
+load([fig4cDir, 'fig4C.mat']);
 
 
 figure;plot(t,[fce],fig4C(:,1),fig4C(:,2))
