@@ -96,6 +96,9 @@ lced = (-int_dnx + lmtcd*kse) ./ (int_n*scale_factor/lceopt + kse + kpe); % [m/s
 
 %% complete stated
 dstatedt = [dndt; gammad; lced];
+
+fce = int_nx; % [N]
+
 %% calculate optional output parameters and error handling
 if nargout > 1 || err == true
     % NOTE: for all output parameters same notes as in "calucalate lced"

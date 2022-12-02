@@ -18,7 +18,7 @@ load([fig2Dir,'gx0.mat']);
 load([fig2Dir,'x0.mat']);
 
 figure;plot(x0,fx0,x0,gx0,f_attach(:,1),f_attach(:,2),g_detach(:,1),g_detach(:,2))
-title('rate parameter functions')
+title('Fig. 2 - rate parameter functions')
 xlabel('x [h]')
 ylabel('rate [Hz]')
 xlim([-2 2])
@@ -33,12 +33,23 @@ load([fig4aDir, 'fig4A.mat']);
 
 
 figure;plot(t,[fce],fig4A(:,1),fig4A(:,2))
-title('forces')
+title('Fig 4a - forces')
 legend('ce - model','ce - graph')
 xlabel('Time [s]')
 ylabel('Force [N]')
 
 %%%% Fig04_B
+fig4bDir = [matDir, 'GraphComparison/fig4/fig4b/'];
+load([fig4bDir, 'fce.mat']);
+load([fig4bDir, 't.mat']);
+load([fig4bDir, 'fig4B.mat']);
+
+
+figure;plot(t,[fce],fig4B(:,1),fig4B(:,2))
+title('Fig 4b - forces')
+legend('ce - model','ce - graph')
+xlabel('Time [s]')
+ylabel('Force [N]')
 
 %%%% Fig04_C
 fig4cDir = [matDir, 'GraphComparison/fig4/fig4c/'];
@@ -48,7 +59,7 @@ load([fig4cDir, 'fig4C.mat']);
 
 
 figure;plot(t,[fce],fig4C(:,1),fig4C(:,2))
-title('forces')
+title('Fig 4c - forces')
 legend('ce - model','ce - graph')
 xlabel('Time [s]')
 ylabel('Force [N]')
