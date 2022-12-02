@@ -13,7 +13,7 @@ function [stim,lmtc,lmtcd]=kinematic_model_input(t,parms)
 %% Modified code - Stimulation
 if t<=0.01
     stim=parms.gamma0; % we start in steady state
-elseif t>0.01 && t<1 % full activation
+elseif t>0.01 && t<0.85 % full activation
     stim=1; 
 else
     stim=0.0; % relaxation to zero
@@ -35,14 +35,14 @@ lceopt=parms.lceopt;
 % end
 
 %% Modified code - Kinematic input
-if t<=0.5
+if t<=0.45
     lmtc=lmtc0;
     lmtcd=0;
-elseif t>0.5 && t<=1
-    lmtc=lmtc0 - 0.002*0.5 + 0.002*t;
-    lmtcd=0.002;
+elseif t>0.45 && t<=0.95
+    lmtc=lmtc0 - 0.001*0.45 + 0.001*t;
+    lmtcd=0.001;
 else
-    lmtc=lmtc0 - 0.002*0.5 + 0.002*1;
+    lmtc=lmtc0 - 0.001*0.45 + 0.001*1;
     lmtcd=0;
 end
 
