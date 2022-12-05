@@ -65,7 +65,17 @@ xlabel('Time [s]')
 ylabel('Force [N]')
 
 %%%% Fig04_D
+fig4dDir = [matDir, 'GraphComparison/fig4/fig4d/'];
+load([fig4dDir, 'fce.mat']);
+load([fig4dDir, 't.mat']);
+load([fig4dDir, 'fig4D.mat']);
 
+
+figure;plot(t,[fce],fig4D(:,1),fig4D(:,2))
+title('Fig 4d - forces')
+legend('ce - model','ce - graph')
+xlabel('Time [s]')
+ylabel('Force [N]')
 
 
 
