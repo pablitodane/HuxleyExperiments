@@ -7,7 +7,7 @@ function [stim,lmtc,lmtcd]=kinematic_model_input(t,parms)
 % 4 - Simulate the figure 4c
 % 5 - Simulate the figure 4d
 
-what_code = 4;
+what_code = 2;
 
 if what_code == 1
     
