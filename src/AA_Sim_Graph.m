@@ -85,53 +85,62 @@ subplot(224)
     ylabel('Force [N]')
 
 %% Fig05
-fig5Dir = [matDir, 'GraphComparison/fig5/'];
-
 %%%% Fig05_A_Data
-load([fig5Dir, 'fse.mat']);
+fig5aDir = [matDir, 'GraphComparison/fig5/fig5a/'];
+load([fig5aDir, 'fse.mat']);
 fse5a=fse;
-load([fig5Dir, 'lse.mat']);
+load([fig5aDir, 'lse.mat']);
 lse5a=lse;
+load([fig5aDir, 'fig5A.mat']);
 
 %%%% Fig05_B_Data
-load([fig5Dir, 'fpe.mat']);
-fpe5b=fpe;
-load([fig5Dir, 'lce.mat']);
-lce5b=lce;
+fig5bDir = [matDir, 'GraphComparison/fig5/fig5b/'];
+load([fig5bDir, 'fpe_loop_rel.mat']);
+fpe5b=fpe_loop_rel;
+load([fig5bDir, 'lpe_length.mat']);
+lce5b=lpe_length;
+load([fig5bDir, 'fig5B.mat']);
 
 %%%% Fig05_C_Data
-load([fig5Dir, 'fce.mat']);
-fce5c=fce;
-load([fig5Dir, 'lce.mat']);
-lce5c=lce;
+fig5cDir = [matDir, 'GraphComparison/fig5/fig5c/'];
+load([fig5cDir, 'fce.mat']);
+fce5c=f_real;
+load([fig5cDir, 'lce.mat']);
+lce5c=lce_length;
+load([fig5cDir, 'fig5C.mat']);
 
 %%%% Fig05_D_Data
-load([fig5Dir, 'fce.mat']);
+fig5dDir = [matDir, 'GraphComparison/fig5/fig5d/'];
+load([fig5dDir, 'fce.mat']);
 fce5d=fce;
-load([fig5Dir, 'lced.mat']);
+load([fig5dDir, 'lced.mat']);
 lced5d=lced;
+load([fig5dDir, 'fig5D.mat']);
 
 %%%% Fig05_Plots
 figure;
 subplot(221)
-    plot(lse5a,fse5a)
+    plot(lse5a,fse5a,fig5A(:,1),fig5A(:,2))
     title('Fig 5a')
     xlabel('l_{se} [mm]')
     ylabel('Force SE [N]')
+    legend('se - model','se - graph')
     axis([0.0186 0.0197 0 1.3])
 subplot(222)
-    plot(lce5b,fpe5b)
+    plot(lce5b,fpe5b,fig5B(:,1)*(10^(-3)),fig5B(:,2))
     title('Fig 5b')
     xlabel('l_{ce} [mm]')
     ylabel('Force PE [N]')
-    axis([0.01 0.019 0 0.0005])
+    legend('pe - model','pe - graph')
+    %axis([0.01 0.019 0 0.0005])
 subplot(223)
-    plot(lce5c,fce5c)
+    plot(lce5c,fce5c,fig5C(:,1)*(10^(-3)),fig5C(:,2))
     title('Fig 5c')
     xlabel('l_{ce} [mm]')
     ylabel('Force CE [N]')
+    legend('ce - model','ce - graph')
 subplot(224)
-    plot(lced5d,fce5d)
+    plot(lced5d,fce5d,fig5D(:,1),fig5D(:,2))
     title('Fig 5d')
     xlabel('l_{ce}-dot [mm]')
     ylabel('Force CE [N]')

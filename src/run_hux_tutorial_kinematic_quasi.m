@@ -12,8 +12,8 @@
 % Comparison of the validity of Hill and Huxley muscle tendon complex
 % models using experimental data obtained from rat m. Soleus in situ.
 % Journal of Experimental Biology, 219, 977-987. DOI: 10.1242/jeb.128280   
-
 clear
+
 %close all
 %clc
 
@@ -36,13 +36,14 @@ tutorial_parms
 
 % set Fse0 :
 parms.fse0=0.1*parms.Fmax; % [N]
+[lse0]=fzero(@Fse_inverse,parms.lse_slack*[1 (1+se_strain)],[],parms); % [m]
 
 % set lmtc0, activation follows from this
-lmtc0=(1+se_strain)*parms.lse_slack+.95*parms.lceopt; % [m]
+%lmtc0=(1+se_strain)*parms.lse_slack+.95*parms.lpe_slack; % [m]
+lmtc0 = lse0 + parms.lpe_slack;
 parms.lmtc0=lmtc0;
 lmtcd0=0; % [m/s]
 
-[lse0]=fzero(@Fse_inverse,parms.lse_slack*[1 (1+se_strain)],[],parms); % [m]
 
 % compute lce0
 lce0 = lmtc0-lse0; % [m]
@@ -57,7 +58,10 @@ lcerel0=lce0/parms.lceopt; % []
 % calculate q0:
 %parms.q0=activeState(gamma0,parms);
 [fse0, fpe0, ~, ~] = CEEC_simple(lse0,lce0,parms);
+
+assert(fse0-fpe0 > 0, 'Error: no root exists if fpe0 > fse0');
 parms.q0=(fse0-fpe0)/(parms.Fmax*fisomrel0);
+
 
 % invert q(gamma) to find gamma0 (fzero has tolX = 1e-16 ...):
 zeroFun=@(x)activeState_inverse(x,parms);
@@ -189,6 +193,7 @@ lmtc_work=cumtrapz(-lmtc,fse); %[J]
 %Ekin = .5*parms.mass*lmtcd.^2; %[J]
 %Ekin = Ekin-Ekin(1);
 %W_grav = -parms.mass*(lmtc-lmtc(1))*-9.81; %[J]
+
 
 %% diagnostics
 if diagnostics == true

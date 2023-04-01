@@ -7,7 +7,7 @@ function [stim,lmtc,lmtcd]=kinematic_model_input(t,parms)
 % 4 - Simulate the figure 4c
 % 5 - Simulate the figure 4d
 
-what_code = 2;
+what_code = 3;
 
 if what_code == 1
     
@@ -85,10 +85,10 @@ lceopt=parms.lceopt;
         lmtc=lmtc0 + 0.0143*0.497 - 0.0143*t;
         lmtcd=-0.0143;
     elseif t>0.504 && t<=1.002
-        lmtc=lmtc0 + 0.0143*0.497 - 0.0143*0.504 + 0.00161*0.504 -0.00161*t;
+        lmtc=lmtc0 + 0.0143*0.497 - 0.0143*0.504 + 0.00161*0.504 + -0.00161*t; 
         lmtcd=-0.00161;
     else
-        lmtc=lmtc0 + 0.0143*0.497 - 0.0143*0.504 + 0.00161*0.504 -0.00161*1.002;
+        lmtc=lmtc0 + 0.0143*0.497 - 0.0143*0.504 + 0.00161*0.504 + -0.00161*1.002;
         lmtcd=0;
     end
 

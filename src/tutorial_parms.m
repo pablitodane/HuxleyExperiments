@@ -8,14 +8,14 @@ Animate=false; % do simple animation
 parms.mass=1; % [kg]
 parms.Fmax=1.26; %[N] - Original: 2*parms.mass*9.81 = 19.62 N
 parms.lceopt=0.0186; % [m] CE optimum length - Original value: 0.07
-parms.lpe_slack=1.1*parms.lceopt; % [m] PE slack length 
-parms.lse_slack=0.0186; % [m] SE slack length - Original value: 0.13
-se_strain=.05; % [N/m^2] SE shape, Fse=Fmax at 4% strain- NOTE: the unit is actually unitless
-pe_strain=.2; % [N/m^2] PE shape, Fpe=0.5*Fmax at 4% strain????
+parms.lpe_slack = 0.0097; %1.1*parms.lceopt; % 0.0097; % [m] PE slack length % original 1.1*parms.lceopt;
+parms.lse_slack = 0.0186; % [m] SE slack length - Original value: 0.13
+se_strain= 0.04;%1.5*1e3; % [N/m^2] SE shape, Fse=Fmax at 4% strain- NOTE: the unit is actually unitless - Original value: 0.05,
+pe_strain= (parms.lceopt/parms.lpe_slack)-1; % [N/m^2] PE shape, Fpe=0.5*Fmax at 4% strain???? - Original value: 0.2;
 
 % compute kse and kpe
-parms.se_shape=parms.Fmax./((se_strain.*parms.lse_slack).^2);
-parms.pe_shape=parms.Fmax./((pe_strain.*parms.lpe_slack).^2);
+parms.se_shape= parms.Fmax./((se_strain.*parms.lse_slack).^2); % 1.5*(10^3);
+parms.pe_shape= 0.05./((pe_strain.*parms.lpe_slack).^2); % 0.68*(10^3)
 
 width=0.56; % [] width of force length relation
 parms.width=width;
